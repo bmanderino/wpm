@@ -1,12 +1,14 @@
 :root {
+  --body-bg: hsl(0, 0%, 13%);
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark light;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--body-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -57,6 +59,18 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.countdown {
+  text-align: center;
+  font-size: 5em;
+  font-weight: bold;
+  color: green;
+  min-height: 150px;
+}
+
+.textField {
+  width: 60vw;
 }
 
 @media (prefers-color-scheme: light) {

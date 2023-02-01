@@ -53,7 +53,7 @@ export const Game = () => {
         if (count >= 0) {
             setTimeout(() => countdown(callback), 1000)
         } else {
-            setText('Go!')
+            setText('GO!')
             callback()
         }
     }
@@ -66,25 +66,43 @@ export const Game = () => {
     }
 
     return (
-        <CssBaseline>
-            <Container>
-                <div className="countdown">{text}</div>
+        <Container
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                flexDirection: 'column',
+            }}>
+            <section className="sourceText">
+                <div className="sampleText">
+                    "He didn't say any more, but we've always been unusually
+                    communicative in a reserved way, and I understood that he
+                    meant a great deal more than that. In consequence, I'm
+                    inclined to reserve all judgements, a habit that has opened
+                    up many curious natures to me and also made me the victim of
+                    not a few veteran bores."
+                </div>
+            </section>
+            <section className="countdown">{text}</section>
+            <section className="typing-area">
                 <Box
                     sx={{
-                        width: '100vw',
+                        width: '90vw',
                         backgroundColor: '#fff',
                         display: 'flex',
                         flexDirection: 'row',
+                        justifyContent: 'center',
+                        borderRadius: '10px',
+                        padding: '10px',
                     }}>
                     <TextField
                         id="outlined-basic"
-                        label="Outlined"
                         variant="outlined"
                         onChange={(e) => setInputText(e.target.value)}
                         onKeyDown={(e) => handleKeyStroke(e.key)}
                         disabled={isDisabled}
                         value={inputText}
-                        inputProps={{ className: 'foo' }}
+                        style={{ marginRight: '10px' }}
+                        className="textField"
                     />
                     <Button
                         variant="contained"
@@ -92,8 +110,10 @@ export const Game = () => {
                         {startTime === null ? 'Start' : 'Stop'}
                     </Button>
                 </Box>
-                {wpm !== null && wpm}
-            </Container>
-        </CssBaseline>
+            </section>
+            <section className="results">
+                {wpm !== null && `Words per minute: ${wpm}`}
+            </section>
+        </Container>
     )
 }
