@@ -30,7 +30,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -71,6 +70,15 @@ button:focus-visible {
 
 .textField {
   width: 60vw;
+}
+
+.results {
+  color: black;
+  flex-basis: 100%;
+}
+
+.results b {
+  color: red
 }
 
 @media (prefers-color-scheme: light) {
