@@ -6,6 +6,8 @@ import type { DiscrepancyType } from '../utils/func'
 import '../index.css'
 import { Link } from 'react-router-dom'
 
+// https://github.com/colinhacks/zod
+
 export const Home = () => {
     const [coutdownText, setCountdownText] = useState('')
     const [inputText, setInputText] = useState('')
@@ -18,6 +20,9 @@ export const Home = () => {
 
     const sourceText =
         "He didn't say any more, but we've always been unusually communicative in a reserved way, and I understood that he meant a great deal more than that. In consequence, I'm inclined to reserve all judgements, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran bores."
+
+    const sourceArray = sourceText.split('')
+    let sourceArrayIndex = 0
 
     const handleTimerButton = () => {
         resetValues()
@@ -67,12 +72,13 @@ export const Home = () => {
         setErrorResult(error)
         // install npm 'invariant' package
         // invariant(typeof wpm == 'number', 'WPM not set');
-        if (typeof wpm !== 'number') throw new Error('WPM not set')
-
-        setFinalTally((prev) => [...prev, wpm])
+        if (typeof wpm === 'number') {
+            setFinalTally((prev) => [...prev, wpm])
+        }
     }
 
     const handleKeyStroke = (key: string) => {
+        // if (inputText[inputText.length - 1] !== ])
         if (key === 'Backspace' || key === 'Delete') {
             setBackspaceCount((prev) => prev + 1)
         }
@@ -138,8 +144,14 @@ export const Home = () => {
                                 />
                             )}
                             <Link
-                                to="/data"
-                                state={{ finalTally, errorResult }}>
+                                to={{
+                                    pathname: `/data?wpm=${wpm}&errorResult=${errorResult?.errorCount}&backspaceCount=${backspaceCount}`,
+                                }}
+                                state={{
+                                    finalTally,
+                                    errorResult,
+                                    backspaceCount,
+                                }}>
                                 See data visualization
                             </Link>
                         </section>
